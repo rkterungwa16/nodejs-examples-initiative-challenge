@@ -68,5 +68,41 @@ app.get('/minimum-secure', function (request, response) {
     })
 });
 
+app.get('/latest-releases', function (request, response) {
+    https.get("https://nodejs.org/dist/index.json", (res) => {
+        const status = res.statusCode
+        if (status === 200 || status === 201) {
+            let responseBody = ''
+            res.on('data', (responseData) => {
+                responseBody += responseData
+            })
+            return res.on('end', () => {
+                const parsedBody = JSON.parse(responseBody)
+
+                const latestReleases = parsedBody.reduce((accum, currentValue) => {
+                    const versionNumber = currentValue.version.split('.')[0];
+                    if (!accum[versionNumber]) {
+                        accum[versionNumber] = currentValue;
+                    }
+                    if (accum[versionNumber]) {
+                        const accumMinor = accum[versionNumber].version.split('.')[1];
+                        const accumPatch = accum[versionNumber].version.split('.')[2];
+                        const currentValueMinor = currentValue.version.split('.')[1];
+                        const currentValuePatch = currentValue.version.split('.')[2];
+                        if (accumMinor < currentValueMinor) {
+                            accum[versionNumber] = currentValue;
+                        }
+                        if (accumMinor === currentValueMinor && accumPatch < currentValuePatch) {
+                            accum[versionNumber] = currentValue;
+                        }
+                    }
+                    return accum;
+                }, {})
+                response.send(latestReleases);
+            })
+        }
+    })
+});
+
 app.listen(PORT)
 module.exports = app;

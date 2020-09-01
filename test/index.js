@@ -70,6 +70,38 @@ tape('should get minimum secure release', async function (t) {
 		});
 })
 
+tape('should get latest releases', async function (t) {
+	const response = nock('http://localhost:3000/')
+		.get('/latest-releases')
+		.reply(200, {
+			"v0": {
+				"version": "v0.9.9",
+				"date": "2013-02-07",
+				"files": [
+					"linux-x64",
+					"linux-x86",
+					"osx-x64-pkg",
+					"osx-x64-tar",
+					"osx-x86-tar",
+					"src",
+					"sunos-x64",
+					"sunos-x86",
+					"win-x64-exe",
+					"win-x86-exe",
+					"win-x86-msi"
+				],
+				"npm": "1.2.10",
+				"v8": "3.15.11.10",
+				"uv": "0.9",
+				"zlib": "1.2.3",
+				"openssl": "1.0.1c",
+				"modules": "0x000B",
+				"lts": false,
+				"security": false
+			}
+		});
+})
+
 // more tests
 
 tape('teardown', function (t) {
