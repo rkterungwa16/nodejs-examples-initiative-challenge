@@ -1,6 +1,7 @@
 const tape = require('tape')
 const bent = require('bent')
-const getPort = require('get-port')
+const getPort = require('get-port');
+const assert = require('assert');
 
 const server = require('../')
 
@@ -21,8 +22,18 @@ tape('setup', async function (t) {
 
 tape('should get dependencies', async function (t) {
 	const html = (await getBuffer(`${context.origin}/dependencies`)).toString()
+	assert.ok(html.match(/bent/g) instanceof Array);
+	assert.ok(html.match(/bent/g).length > 0);
+	assert.equal(html.match(/bent/g)[0], 'bent');
 
-	// assertions etc
+	assert.ok(html.match(/express/g) instanceof Array);
+	assert.ok(html.match(/express/g).length > 0);
+	assert.equal(html.match(/express/g)[0], 'express');
+
+	assert.ok(html.match(/handlebars/g) instanceof Array);
+	assert.ok(html.match(/handlebars/g).length > 0);
+	assert.equal(html.match(/handlebars/g)[0], 'handlebars');
+	
 })
 
 // more tests
