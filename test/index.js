@@ -1,7 +1,8 @@
 const tape = require('tape')
 const bent = require('bent')
-const getPort = require('get-port');
-const assert = require('assert');
+const getPort = require('get-port')
+const assert = require('assert')
+const nock = require('nock')
 
 const server = require('../')
 
@@ -33,7 +34,40 @@ tape('should get dependencies', async function (t) {
 	assert.ok(html.match(/handlebars/g) instanceof Array);
 	assert.ok(html.match(/handlebars/g).length > 0);
 	assert.equal(html.match(/handlebars/g)[0], 'handlebars');
-	
+
+});
+
+tape('should get minimum secure release', async function (t) {
+	const response = nock('http://localhost:3000/')
+		.get('/minimum-secure')
+		.reply(200, {
+			"v0": {
+				"version": "v0.10.46",
+				"date": "2016-06-23",
+				"files": [
+					"headers",
+					"linux-x64",
+					"linux-x86",
+					"osx-x64-pkg",
+					"osx-x64-tar",
+					"osx-x86-tar",
+					"src",
+					"sunos-x64",
+					"sunos-x86",
+					"win-x64-exe",
+					"win-x86-exe",
+					"win-x86-msi"
+				],
+				"npm": "2.15.1",
+				"v8": "3.14.5.9",
+				"uv": "0.10.37",
+				"zlib": "1.2.8",
+				"openssl": "1.0.1t",
+				"modules": "11",
+				"lts": false,
+				"security": true
+			}
+		});
 })
 
 // more tests
