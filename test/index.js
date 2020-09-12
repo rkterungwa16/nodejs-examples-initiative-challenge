@@ -34,9 +34,9 @@ tape('should get dependencies', async function (t) {
 	assert.ok(html.match(/express/g).length > 0);
 	assert.equal(html.match(/express/g)[0], 'express');
 
-	assert.ok(html.match(/handlebars/g) instanceof Array);
-	assert.ok(html.match(/handlebars/g).length > 0);
-	assert.equal(html.match(/handlebars/g)[0], 'handlebars');
+	assert.ok(html.match(/hbs/g) instanceof Array);
+	assert.ok(html.match(/hbs/g).length > 0);
+	assert.equal(html.match(/hbs/g)[0], 'hbs');
 
 });
 

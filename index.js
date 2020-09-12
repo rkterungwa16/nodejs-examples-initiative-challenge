@@ -1,5 +1,5 @@
 const express = require('express')
-const hbs = require("handlebars")
+const hbs = require('hbs')
 const fs = require("fs")
 const semver = require('semver')
 const bent = require('bent')
@@ -11,7 +11,7 @@ app.use(express.json());
 app.engine('hbs', function (filePath, options, callback) { // define the template engine
     fs.readFile(filePath, function (err, content) {
         if (err) return callback(err)
-        const rendered = hbs.compile(content.toString());
+        const rendered = hbs.handlebars.compile(content.toString());
         return callback(null, rendered({ dependencies: options.dependencies }))
     })
 });
