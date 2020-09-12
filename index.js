@@ -1,11 +1,12 @@
 const express = require('express')
 const hbs = require("handlebars")
 const fs = require("fs")
-const https = require("https");
 const semver = require('semver')
+const bent = require('bent')
 
 const app = express()
 const PORT = 3100
+const getJSON = bent('json')
 app.use(express.json());
 app.engine('hbs', function (filePath, options, callback) { // define the template engine
     fs.readFile(filePath, function (err, content) {
@@ -30,65 +31,42 @@ app.get('/dependencies', function (req, res) {
     })
 });
 
-app.get('/minimum-secure', function (request, response) {
-    https.get("https://nodejs.org/dist/index.json", (res) => {
-        const status = res.statusCode
-        if (status === 200 || status === 201) {
-            let responseBody = ''
-            res.on('data', (responseData) => {
-                responseBody += responseData
-            })
-            return res.on('end', () => {
-                const parsedBody = JSON.parse(responseBody)
-                const secureVersions = parsedBody.filter((version) => {
-                    if (version.security) return true;
-                });
+app.get('/minimum-secure', async function (request, response) {
+    const nodeVersions = await getJSON('https://nodejs.org/dist/index.json');
+    const secureVersions = nodeVersions.filter((version) => {
+        if (version.security) return true;
+    });
 
-                const minSecureVersion = secureVersions.reduce((accum, currentValue) => {
-                    const versionNumber = currentValue.version.split('.')[0];
-                    if (!accum[versionNumber]) {
-                        accum[versionNumber] = currentValue;
-                    }
-                    if (accum[versionNumber]) {
-                        if (semver.gt(accum[versionNumber].version, currentValue.version)) {
-                            accum[versionNumber] = currentValue;
-                        }
-                    }
-                    return accum;
-                }, {})
-                response.send(minSecureVersion);
-            })
+    const minSecureVersion = secureVersions.reduce((accum, currentValue) => {
+        const versionNumber = currentValue.version.split('.')[0];
+        if (!accum[versionNumber]) {
+            accum[versionNumber] = currentValue;
         }
-    })
+        if (accum[versionNumber]) {
+            if (semver.gt(accum[versionNumber].version, currentValue.version)) {
+                accum[versionNumber] = currentValue;
+            }
+        }
+        return accum;
+    }, {})
+    response.send(minSecureVersion);
 });
 
-app.get('/latest-releases', function (request, response) {
-    https.get("https://nodejs.org/dist/index.json", (res) => {
-        const status = res.statusCode
-        if (status === 200 || status === 201) {
-            let responseBody = ''
-            res.on('data', (responseData) => {
-                responseBody += responseData
-            })
-            return res.on('end', () => {
-                const parsedBody = JSON.parse(responseBody)
-
-                const latestReleases = parsedBody.reduce((accum, currentValue) => {
-                    const versionNumber = currentValue.version.split('.')[0];
-                    if (!accum[versionNumber]) {
-                        accum[versionNumber] = currentValue;
-                    }
-                    if (accum[versionNumber]) {
-                        if (semver.lt(accum[versionNumber].version, currentValue.version)) {
-                            accum[versionNumber] = currentValue;
-                        }
-                    }
-                    return accum;
-                }, {})
-                response.send(latestReleases);
-            })
+app.get('/latest-releases', async function (request, response) {
+    const nodeVersions = await getJSON('https://nodejs.org/dist/index.json');
+    const latestReleases = nodeVersions.reduce((accum, currentValue) => {
+        const versionNumber = currentValue.version.split('.')[0];
+        if (!accum[versionNumber]) {
+            accum[versionNumber] = currentValue;
         }
-    })
+        if (accum[versionNumber]) {
+            if (semver.lt(accum[versionNumber].version, currentValue.version)) {
+                accum[versionNumber] = currentValue;
+            }
+        }
+        return accum;
+    }, {})
+    response.send(latestReleases);
 });
 
 app.listen(PORT)
