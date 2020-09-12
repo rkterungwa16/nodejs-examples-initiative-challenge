@@ -43,7 +43,7 @@ app.get('/minimum-secure', async function (request, response) {
             accum[versionNumber] = currentValue;
         }
         if (accum[versionNumber]) {
-            if (semver.gt(accum[versionNumber].version, currentValue.version)) {
+            if (semver.lt(accum[versionNumber].version, currentValue.version)) {
                 accum[versionNumber] = currentValue;
             }
         }

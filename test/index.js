@@ -52,8 +52,8 @@ tape('should get minimum secure release', async function (t) {
 	const minSecureReleases = await getJSON('http://localhost:3000/minimum-secure')
 	assert.ok(minSecureReleases.v0 instanceof Object)
 	assert.deepStrictEqual(minSecureReleases.v0, {
-		"version": "v0.10.46",
-		"date": "2016-06-23",
+		"version": "v0.12.17",
+		"date": "2016-10-18",
 		"files": [
 			"headers",
 			"linux-x64",
@@ -69,19 +69,19 @@ tape('should get minimum secure release', async function (t) {
 			"win-x86-msi"
 		],
 		"npm": "2.15.1",
-		"v8": "3.14.5.9",
-		"uv": "0.10.37",
+		"v8": "3.28.71.19",
+		"uv": "1.6.1",
 		"zlib": "1.2.8",
-		"openssl": "1.0.1t",
-		"modules": "11",
+		"openssl": "1.0.1u",
+		"modules": "14",
 		"lts": false,
 		"security": true
 	})
 
 	assert.ok(minSecureReleases.v4 instanceof Object)
 	assert.deepStrictEqual(minSecureReleases.v4, {
-		"version": "v4.6.0",
-		"date": "2016-09-27",
+		"version": "v4.9.0",
+		"date": "2018-03-28",
 		"files": [
 			"headers",
 			"linux-arm64",
@@ -104,11 +104,11 @@ tape('should get minimum secure release', async function (t) {
 			"win-x86-msi",
 			"win-x86-zip"
 		],
-		"npm": "2.15.9",
-		"v8": "4.5.103.37",
+		"npm": "2.15.11",
+		"v8": "4.5.103.53",
 		"uv": "1.9.1",
-		"zlib": "1.2.8",
-		"openssl": "1.0.2j",
+		"zlib": "1.2.11",
+		"openssl": "1.0.2o",
 		"modules": "46",
 		"lts": "Argon",
 		"security": true

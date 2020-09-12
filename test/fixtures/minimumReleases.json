@@ -32,8 +32,8 @@
         "security": true
     },
     "v13": {
-        "version": "v13.4.0",
-        "date": "2019-12-17",
+        "version": "v13.8.0",
+        "date": "2020-02-05",
         "files": [
             "aix-ppc64",
             "headers",
@@ -55,9 +55,9 @@
             "win-x86-msi",
             "win-x86-zip"
         ],
-        "npm": "6.13.4",
+        "npm": "6.13.6",
         "v8": "7.9.317.25",
-        "uv": "1.34.0",
+        "uv": "1.34.1",
         "zlib": "1.2.11",
         "openssl": "1.1.1d",
         "modules": "79",
@@ -65,8 +65,8 @@
         "security": true
     },
     "v12": {
-        "version": "v12.8.1",
-        "date": "2019-08-15",
+        "version": "v12.18.0",
+        "date": "2020-06-02",
         "files": [
             "aix-ppc64",
             "headers",
@@ -88,18 +88,18 @@
             "win-x86-msi",
             "win-x86-zip"
         ],
-        "npm": "6.10.2",
-        "v8": "7.5.288.22",
-        "uv": "1.30.1",
+        "npm": "6.14.4",
+        "v8": "7.8.279.23",
+        "uv": "1.37.0",
         "zlib": "1.2.11",
-        "openssl": "1.1.1c",
+        "openssl": "1.1.1g",
         "modules": "72",
-        "lts": false,
+        "lts": "Erbium",
         "security": true
     },
     "v11": {
-        "version": "v11.3.0",
-        "date": "2018-11-27",
+        "version": "v11.10.1",
+        "date": "2019-02-28",
         "files": [
             "aix-ppc64",
             "headers",
@@ -122,18 +122,18 @@
             "win-x86-msi",
             "win-x86-zip"
         ],
-        "npm": "6.4.1",
+        "npm": "6.7.0",
         "v8": "7.0.276.38",
-        "uv": "1.23.2",
+        "uv": "1.26.0",
         "zlib": "1.2.11",
-        "openssl": "1.1.0j",
+        "openssl": "1.1.1a",
         "modules": "67",
         "lts": false,
         "security": true
     },
     "v10": {
-        "version": "v10.14.0",
-        "date": "2018-11-27",
+        "version": "v10.21.0",
+        "date": "2020-06-02",
         "files": [
             "aix-ppc64",
             "headers",
@@ -156,11 +156,11 @@
             "win-x86-msi",
             "win-x86-zip"
         ],
-        "npm": "6.4.1",
+        "npm": "6.14.4",
         "v8": "6.8.275.32",
-        "uv": "1.23.2",
+        "uv": "1.34.2",
         "zlib": "1.2.11",
-        "openssl": "1.1.0j",
+        "openssl": "1.1.1e",
         "modules": "64",
         "lts": "Dubnium",
         "security": true
@@ -202,8 +202,8 @@
         "security": true
     },
     "v8": {
-        "version": "v8.1.4",
-        "date": "2017-07-11",
+        "version": "v8.17.0",
+        "date": "2019-12-17",
         "files": [
             "aix-ppc64",
             "headers",
@@ -228,13 +228,13 @@
             "win-x86-msi",
             "win-x86-zip"
         ],
-        "npm": "5.0.3",
-        "v8": "5.8.283.41",
-        "uv": "1.12.0",
+        "npm": "6.13.4",
+        "v8": "6.2.414.78",
+        "uv": "1.23.2",
         "zlib": "1.2.11",
-        "openssl": "1.0.2l",
+        "openssl": "1.0.2s",
         "modules": "57",
-        "lts": false,
+        "lts": "Carbon",
         "security": true
     },
     "v7": {
@@ -274,8 +274,8 @@
         "security": true
     },
     "v6": {
-        "version": "v6.7.0",
-        "date": "2016-09-27",
+        "version": "v6.17.0",
+        "date": "2019-02-28",
         "files": [
             "aix-ppc64",
             "headers",
@@ -300,18 +300,18 @@
             "win-x86-msi",
             "win-x86-zip"
         ],
-        "npm": "3.10.3",
-        "v8": "5.1.281.83",
-        "uv": "1.9.1",
-        "zlib": "1.2.8",
-        "openssl": "1.0.2j",
+        "npm": "3.10.10",
+        "v8": "5.1.281.111",
+        "uv": "1.16.1",
+        "zlib": "1.2.11",
+        "openssl": "1.0.2r",
         "modules": "48",
-        "lts": false,
+        "lts": "Boron",
         "security": true
     },
     "v4": {
-        "version": "v4.6.0",
-        "date": "2016-09-27",
+        "version": "v4.9.0",
+        "date": "2018-03-28",
         "files": [
             "headers",
             "linux-arm64",
@@ -334,18 +334,18 @@
             "win-x86-msi",
             "win-x86-zip"
         ],
-        "npm": "2.15.9",
-        "v8": "4.5.103.37",
+        "npm": "2.15.11",
+        "v8": "4.5.103.53",
         "uv": "1.9.1",
-        "zlib": "1.2.8",
-        "openssl": "1.0.2j",
+        "zlib": "1.2.11",
+        "openssl": "1.0.2o",
         "modules": "46",
         "lts": "Argon",
         "security": true
     },
     "v0": {
-        "version": "v0.10.46",
-        "date": "2016-06-23",
+        "version": "v0.12.17",
+        "date": "2016-10-18",
         "files": [
             "headers",
             "linux-x64",
@@ -361,11 +361,11 @@
             "win-x86-msi"
         ],
         "npm": "2.15.1",
-        "v8": "3.14.5.9",
-        "uv": "0.10.37",
+        "v8": "3.28.71.19",
+        "uv": "1.6.1",
         "zlib": "1.2.8",
-        "openssl": "1.0.1t",
-        "modules": "11",
+        "openssl": "1.0.1u",
+        "modules": "14",
         "lts": false,
         "security": true
     }
