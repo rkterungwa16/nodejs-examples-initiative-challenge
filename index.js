@@ -5,7 +5,7 @@ const semver = require('semver')
 const bent = require('bent')
 
 const app = express()
-const PORT = 3100
+const PORT = 3000
 const getJSON = bent('json')
 app.use(express.json());
 app.engine('hbs', function (filePath, options, callback) { // define the template engine
