@@ -2,9 +2,10 @@ const express = require('express')
 const hbs = require("handlebars")
 const fs = require("fs")
 const https = require("https");
+const semver = require('semver')
 
 const app = express()
-const PORT = 3000
+const PORT = 3100
 app.use(express.json());
 app.engine('hbs', function (filePath, options, callback) { // define the template engine
     fs.readFile(filePath, function (err, content) {
@@ -49,14 +50,7 @@ app.get('/minimum-secure', function (request, response) {
                         accum[versionNumber] = currentValue;
                     }
                     if (accum[versionNumber]) {
-                        const accumMinor = accum[versionNumber].version.split('.')[1];
-                        const accumPatch = accum[versionNumber].version.split('.')[2];
-                        const currentValueMinor = currentValue.version.split('.')[1];
-                        const currentValuePatch = currentValue.version.split('.')[2];
-                        if (accumMinor > currentValueMinor) {
-                            accum[versionNumber] = currentValue;
-                        }
-                        if (accumMinor === currentValueMinor && accumPatch > currentValuePatch) {
+                        if (semver.gt(accum[versionNumber].version, currentValue.version)) {
                             accum[versionNumber] = currentValue;
                         }
                     }
@@ -85,14 +79,7 @@ app.get('/latest-releases', function (request, response) {
                         accum[versionNumber] = currentValue;
                     }
                     if (accum[versionNumber]) {
-                        const accumMinor = accum[versionNumber].version.split('.')[1];
-                        const accumPatch = accum[versionNumber].version.split('.')[2];
-                        const currentValueMinor = currentValue.version.split('.')[1];
-                        const currentValuePatch = currentValue.version.split('.')[2];
-                        if (accumMinor < currentValueMinor) {
-                            accum[versionNumber] = currentValue;
-                        }
-                        if (accumMinor === currentValueMinor && accumPatch < currentValuePatch) {
+                        if (semver.lt(accum[versionNumber].version, currentValue.version)) {
                             accum[versionNumber] = currentValue;
                         }
                     }
