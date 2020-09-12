@@ -8,11 +8,9 @@
 
 <body>
     <ul>
-        <ul>
-            {{#dependencies}}
-                <li>{{ name }} - {{ version }}</li>
-            {{/dependencies}}
-        </ul>
+        {{#dependencies}}
+        <li>{{ name }} - {{ version }}</li>
+        {{/dependencies}}
     </ul>
 </body>
 
