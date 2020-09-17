@@ -25,18 +25,18 @@ tape('setup', async function (t) {
 })
 
 tape('should get dependencies', async function (t) {
-	const html = (await getBuffer(`${context.origin}/dependencies`)).toString()
-	assert.ok(html.match(/bent/g) instanceof Array);
-	assert.ok(html.match(/bent/g).length > 0);
-	assert.equal(html.match(/bent/g)[0], 'bent');
+	const html = (await getBuffer(`${context.origin}/dependencies`)).toString();
+	t.ok(html.match(/bent/g) instanceof Array)
+	t.ok(html.match(/bent/g).length > 0);
+	t.equal(html.match(/bent/g)[0], 'bent');
 
-	assert.ok(html.match(/express/g) instanceof Array);
-	assert.ok(html.match(/express/g).length > 0);
-	assert.equal(html.match(/express/g)[0], 'express');
+	t.ok(html.match(/express/g) instanceof Array);
+	t.ok(html.match(/express/g).length > 0);
+	t.equal(html.match(/express/g)[0], 'express');
 
-	assert.ok(html.match(/hbs/g) instanceof Array);
-	assert.ok(html.match(/hbs/g).length > 0);
-	assert.equal(html.match(/hbs/g)[0], 'hbs');
+	t.ok(html.match(/hbs/g) instanceof Array);
+	t.ok(html.match(/hbs/g).length > 0);
+	t.equal(html.match(/hbs/g)[0], 'hbs');
 
 });
 
@@ -50,8 +50,8 @@ tape('should get minimum secure release', async function (t) {
 		.get('/minimum-secure')
 		.reply(200, sampleMinimumReleases)
 	const minSecureReleases = await getJSON('http://localhost:3000/minimum-secure')
-	assert.ok(minSecureReleases.v0 instanceof Object)
-	assert.deepStrictEqual(minSecureReleases.v0, {
+	t.ok(minSecureReleases.v0 instanceof Object)
+	t.deepEqual(minSecureReleases.v0, {
 		"version": "v0.12.17",
 		"date": "2016-10-18",
 		"files": [
@@ -78,8 +78,8 @@ tape('should get minimum secure release', async function (t) {
 		"security": true
 	})
 
-	assert.ok(minSecureReleases.v4 instanceof Object)
-	assert.deepStrictEqual(minSecureReleases.v4, {
+	t.ok(minSecureReleases.v4 instanceof Object)
+	t.deepEqual(minSecureReleases.v4, {
 		"version": "v4.9.0",
 		"date": "2018-03-28",
 		"files": [
@@ -125,8 +125,8 @@ tape('should get latest releases', async function (t) {
 		.get('/latest-releases')
 		.reply(200, sampleLatestReleases)
 	const latestReleases = await getJSON('http://localhost:3000/latest-releases')
-	assert.ok(latestReleases.v13 instanceof Object)
-	assert.deepStrictEqual(latestReleases.v13, {
+	t.ok(latestReleases.v13 instanceof Object)
+	t.deepEqual(latestReleases.v13, {
 		"version": "v13.14.0",
 		"date": "2020-04-29",
 		"files": [
@@ -160,8 +160,8 @@ tape('should get latest releases', async function (t) {
 		"security": false
 	})
 
-	assert.ok(latestReleases.v14 instanceof Object)
-	assert.deepStrictEqual(latestReleases.v14, {
+	t.ok(latestReleases.v14 instanceof Object)
+	t.deepEqual(latestReleases.v14, {
 		"version": "v14.10.1",
 		"date": "2020-09-10",
 		"files": [
